@@ -5,10 +5,19 @@ class Game {
     this.ready = false;
   }
 
+  /**
+   * Returns active player.
+   * @return  {Object}    player - The active player.
+   */
   get activePlayer() {
-    const activePlayer = this.players.find(player => (player.active = true));
+    const activePlayer = this.players.find(player => player.active);
     return activePlayer;
   }
+
+  /**
+   * Creates two player objects
+   * @return  {array}    An array of two player objects.
+   */
 
   createPlayers() {
     const players = [
@@ -18,5 +27,12 @@ class Game {
     return players;
   }
 
-  startGame() {}
+  /**
+   * Initializes game.
+   */
+  startGame() {
+    this.board.drawHTMLBoard();
+    this.activePlayer.activeToken.drawHTMLToken();
+    this.ready = true;
+  }
 }

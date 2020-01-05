@@ -1,5 +1,3 @@
-document.querySelector("#begin-game");
-
 const game = new Game();
 
 /**
