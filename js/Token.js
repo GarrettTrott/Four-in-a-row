@@ -47,12 +47,31 @@ class Token {
   }
 
   /**
-   * Moves html token one column to left.
+   * Moves html token one column to right.
    */
-  moveRight() {
-    if (this.columnLocation > 0) {
+  moveRight(columns) {
+    if (this.columnLocation < columns - 1) {
       this.htmlToken.style.left = this.offsetLeft + 76;
       this.columnLocation += 1;
     }
+  }
+
+  /**
+   * Drops html token into targeted board space.
+   * @param   {Object}   target - Targeted space for dropped token.
+   * @param   {function} reset  - The reset function to call after the drop animation has completed.
+   */
+
+  drop(target, reset) {
+    this.dropped = true;
+
+    $(this.htmlToken).animate(
+      {
+        top: target.y * target.diameter
+      },
+      750,
+      "easeOutBounce",
+      reset
+    );
   }
 }
