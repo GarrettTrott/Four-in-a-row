@@ -3,6 +3,7 @@ class Token {
     this.owner = owner;
     this.id = `token-${index}-${owner}`;
     this.dropped = false;
+    this.columnLocation = 0;
   }
 
   /**
@@ -15,6 +16,15 @@ class Token {
   }
 
   /**
+   * Gets left offset of html element.
+   * @return  {number}   Left offset of token object's htmlToken.
+   */
+
+  get offsetLeft() {
+    return this.htmlToken.offsetLeft;
+  }
+
+  /**
    * Draws new HTML token.
    */
 
@@ -24,5 +34,25 @@ class Token {
     token.setAttribute("id", this.id);
     token.setAttribute("class", "token");
     token.style.backgroundColor = this.owner.color;
+  }
+
+  /**
+   * Moves html token one column to left.
+   */
+  moveLeft() {
+    if (this.columnLocation > 0) {
+      this.htmlToken.style.left = this.offsetLeft - 76;
+      this.columnLocation -= 1;
+    }
+  }
+
+  /**
+   * Moves html token one column to left.
+   */
+  moveRight() {
+    if (this.columnLocation > 0) {
+      this.htmlToken.style.left = this.offsetLeft + 76;
+      this.columnLocation += 1;
+    }
   }
 }
